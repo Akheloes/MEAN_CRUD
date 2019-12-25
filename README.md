@@ -1,0 +1,1 @@
+This will be a minimalistic project showing the MEAN stack interaction.
