@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ApiService } from './api.service';
 
 
 @Component({
@@ -7,26 +8,24 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent {//
   title = 'app';
   dbUrl = 'http://localhost:3000'; // TODO: hide ! (making an inaccessible file and exporting the value from it to here)
 
-  constructor(private http: HttpClient){}
+  constructor(private api: ApiService){}
 
   /**
    * Minimimalistic example of sending an http get request from Angular to ExpressJS
    */
   get() {
-    this.http.get(this.dbUrl, {responseType: 'text'}).subscribe(
-      (response) => {
-        console.info('[angular][get][response][/]', response);
-      },
-      (error) => {
-        console.error(error);
-      }
-    )
+    this.api.get();
   }
 
+  post() {
+    this.api.post();
+  }
+
+  /*
   post() {
     this.http.post(this.dbUrl, {content: 'request content'}, {responseType: 'json'}).subscribe(
       (response) => {
@@ -37,4 +36,5 @@ export class AppComponent {
       }
     );
   }
+  */
 }
